@@ -10,14 +10,15 @@ route.register("cart",CartView,basename='cartview')
 route.register("payment",PaymentView,basename='paymentview')
 route.register("order",OrderView,basename='orderview')
 route.register("review",ReviewView,basename='reviewview')
+# route.register("order/create",  RazorpayView.order_payment,basename="create")
 
 
 urlpatterns = [
     path('register',RegisterView.as_view()),
     path('login',LoginView.as_view()),
     path('forgetpass',ForgetPassView.as_view()),
-    path("order/create", RazorpayView.order_payment, name="create"),
-    # path("callback/", callback, name="callback"),
+    path("order/create", RazorpayView.as_view()),
+    # path("order/success", callback, name="callback"),
     path('forgetchangepass/<pk>',ForgetChangePassView.as_view()),
     path('changepass/<pk>',ChangePassword.as_view()),
     path('',include(route.urls)),

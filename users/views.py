@@ -71,10 +71,11 @@ class ForgetPassView(APIView):
         })
     
 class RazorpayView(APIView):
-    def order_payment(self,request):
-        if request.method == "POST":
-            # name = request.POST.get("name")
-            # amount = request.POST.get("amount")
+    def post(self,request):
+        # if request.method == "POST":
+        name = request.data["name"]
+        amount = request.data["amount"]
+        print(name,amount)
             # client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
             # razorpay_order = client.order.create(
             #     {"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"}
@@ -84,13 +85,15 @@ class RazorpayView(APIView):
             # #     name=name, amount=amount, provider_order_id=payment_order["id"]
             # # )
             # # order.save()
-            return Response({
-            'msg' : 'success',
-            "id" : "order"
-            })
         return Response({
-            'msg' : 'fail',
+        'msg' : 'success',
+        "data": {
+            name, amount, 
+        }
         })
+        # return Response({
+        #     'msg' : 'fail',
+        # })
 
 
 # @csrf_exempt
